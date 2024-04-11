@@ -45,7 +45,7 @@ const schema = yup.object().shape({
       alert(JSON.stringify(values, null, 2));
     })
     .catch((err) => {
-      console.log(err.errors);
+      
     });
 </script>
 <form on:submit|preventDefault={handleSubmit}>

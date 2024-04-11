@@ -8,13 +8,17 @@ let values = {
     password: "",
     
 }; 
-let errors = {};
+let errors = {email: "",
+    password: "",
+    confirmPassword: ""};
 
   const handleSubmit = async () => {
     try {
       await schema.validate(values, { abortEarly: false });
       alert(JSON.stringify(values, null, 2));
-      errors = {};
+      errors = {email: "",
+    password: "",
+    confirmPassword: ""};
     } catch (err:any) {
       errors = err.inner.reduce((acc:any, err:any) => {
         return { ...acc, [err.path]: err.message };

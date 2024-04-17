@@ -6,6 +6,11 @@
     import FCard from "$lib/FeedCard.svelte"
     import SCard from "$lib/ShortCard.svelte"
   import { SearchOutline } from 'flowbite-svelte-icons';
+  export let data
+ data = data.data
+ data.forEach(element => {
+  console.log(element)
+ });
     </script>
 
 <div class="mx-auto max-w-3xl m-11">
@@ -22,9 +27,10 @@
         
         </div>
         <div class=" mx-auto my-10 flex overflow-x-auto max-w-3xl">
-          {#each Array(5) as _, index (index)}
+          {#each data as item}
+          
           <div class="flex-none mr-6 ">
-            <FCard/>
+            <FCard data={item}/>
           </div>
           {/each}
         </div>

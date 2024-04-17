@@ -1,8 +1,9 @@
 <script>
      import { Avatar,Search,GradientButton ,Card,DarkMode} from 'flowbite-svelte';
      import { SearchOutline } from 'flowbite-svelte-icons';
+     import {isAuthenticated} from '$lib/store'
 </script>
-
+{#if isAuthenticated}
 <div class="mx-auto max-w-3xl flex justify-between items-center space-x-4 rtl:space-x-reverse ">
      <Avatar src="src\lib\OIP.jpeg" size="xl" rounded />
      <div class="space-y-1 font-medium dark:text-white">
@@ -29,6 +30,6 @@
        </Card>
      </div>
    </div>
-   
+   {/if}
              
              

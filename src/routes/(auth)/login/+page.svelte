@@ -29,8 +29,15 @@ let errors = {email: "",
 }).then((response:any) => {
       
        // Print the response
-       
+       const tokenData = JSON.parse(response.data.data);
+    // Extract access token and expiry time
+      const accessToken = tokenData.access_token;
+      const expiryTime = Date.now() + (tokenData.expires_in * 1000);
+       console.log(accessToken)
        isAuthenticated.set(true);
+       userid.set(response.data.id);
+    // Set session token
+    sessionToken.set({ token: accessToken, expiry: expiryTime });
 
       goto('/')
       // Handle the response data as needed

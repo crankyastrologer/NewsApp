@@ -1,8 +1,11 @@
 <script lang='ts'>
   import { GradientButton, Heading, Span, Input, Textarea } from 'flowbite-svelte';
+  import axios from 'axios';
   import { EyeOutline, EyeSlashOutline } from 'flowbite-svelte-icons';
+  import {isAuthenticated,userid,sessionToken} from '$lib/store'
   let show = false;
 import * as yup from 'yup';
+	import { goto } from '$app/navigation';
 let values = {
     email: "",
     password: "",
@@ -19,6 +22,21 @@ let errors = {email: "",
       errors = {email: "",
     password: "",
     confirmPassword: ""};
+    console.log("successful")
+    axios.post('http://127.0.0.1:5000/login',{
+      user:"abc@gmail.com",
+  password:"hello world!"
+}).then((response:any) => {
+      
+       // Print the response
+       
+       isAuthenticated.set(true);
+
+      goto('/')
+      // Handle the response data as needed
+    }).catch((error:any) => {
+      console.error('Error:', error);
+    });
     } catch (err:any) {
       errors = err.inner.reduce((acc:any, err:any) => {
         return { ...acc, [err.path]: err.message };
@@ -45,15 +63,15 @@ const schema = yup.object().shape({
     });
 </script>
 <form on:submit|preventDefault={handleSubmit}>
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
-  <div class="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg">
+<div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+  <div class="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800">
     <Heading tag="h2" class="text-center mb-4">
       <Span gradient>Login</Span>
     </Heading>
     <div class="mb-4">
       <Input id="email" name="email" bind:value={values.email} placeholder="Email" />
       {#if errors.email}
-        <span class="error">{errors.email}</span>
+        <span class="error dark:text-white">{errors.email}</span>
       {/if}
     </div>
     <div class="mb-4">
@@ -67,7 +85,7 @@ const schema = yup.object().shape({
       </button></Input>
 
       {#if errors.password}
-        <span class="error">{errors.password}</span>
+        <span class="error dark:text-white">{errors.password}</span>
       {/if}
     </div>
     

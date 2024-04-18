@@ -1,6 +1,9 @@
 <script lang='ts'>
   import { GradientButton, Heading, Span, Input, Textarea } from 'flowbite-svelte';
   import { EyeOutline, EyeSlashOutline } from 'flowbite-svelte-icons';
+  import {isAuthenticated,userid,sessionToken} from '$lib/store'
+  import { goto } from '$app/navigation';
+  import axios from 'axios'
   let show = false;
   let show1 = false;
 import * as yup from 'yup';
@@ -21,6 +24,28 @@ let errors = {email: "",
       errors = {email: "",
     password: "",
     confirmPassword: ""};
+    axios.post('http://127.0.0.1:5000/register',{
+      user:values.email,
+  password:values.password
+}).then((response:any) => {
+      
+       // Print the response
+       const tokenData = JSON.parse(response.data.data);
+    // Extract access token and expiry time
+      const accessToken = tokenData.access_token;
+      const expiryTime = Date.now() + (tokenData.expires_in * 1000);
+       console.log(accessToken)
+       isAuthenticated.set(true);
+       userid.set(response.data.id);
+    // Set session token
+    sessionToken.set({ token: accessToken, expiry: expiryTime });
+
+      goto('/')
+      // Handle the response data as needed
+    }).catch((error:any) => {
+      console.error('Error:', error);
+      alert("email already registered");
+    });
     } catch (err:any) {
       errors = err.inner.reduce((acc:any, err:any) => {
         return { ...acc, [err.path]: err.message };
@@ -49,8 +74,8 @@ const schema = yup.object().shape({
     });
 </script>
 <form on:submit|preventDefault={handleSubmit}>
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
-  <div class="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg">
+<div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+  <div class="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800">
     <Heading tag="h2" class="text-center mb-4">
       <Span gradient>Register</Span>
     </Heading>
@@ -89,6 +114,8 @@ const schema = yup.object().shape({
       {/if}
     </div>
     <GradientButton outline color="purpleToBlue" class="mt-4 w-full" type='submit'>Submit</GradientButton>
+    <div class='dark:text-white'>or  <a href='/login'>login</a></div>
+
   </div>
 </div>
 </form>

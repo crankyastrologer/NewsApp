@@ -97,6 +97,7 @@ const schema = yup.object().shape({
     </div>
     
     <GradientButton outline color="purpleToBlue" class="mt-4 w-full" type='submit'>Submit</GradientButton>
+    <div class='dark:text-white'>or  <a href='/register'>register</a></div>
   </div>
 </div>
 </form>

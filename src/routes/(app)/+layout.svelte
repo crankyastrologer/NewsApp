@@ -1,7 +1,9 @@
 <script>
 	import "../../app.css";
+  import { GradientButton, Img } from 'flowbite-svelte';
 
-
+  import { SearchOutline } from 'flowbite-svelte-icons';
+  import { Search, Button } from 'flowbite-svelte';
   import BottomNav from '$lib/bottom.svelte'
 	import { goto } from "$app/navigation";
 	import { onMount } from "svelte";
@@ -38,7 +40,13 @@
     
   
   </script>
-  
+  <div class="mx-auto max-w-3xl m-11 justify-between">
+    <form class="flex gap-2">
+        <Search size="md" />
+        <GradientButton class="!p-2.5">
+          <SearchOutline class="w-5 h-5 " />
+        </GradientButton>
+            </form></div>    
 
   <slot/>
   <BottomNav/>

@@ -11,15 +11,7 @@
        <div class="text-md flex  text-gray-500 dark:text-gray-400 mx-32">Joined in August 2014</div>
      </div>
    </div>
-   <div class="mx-auto max-w-3xl m-11">
-     <form class="flex gap-2">
-       <Search size="md" />
-       <GradientButton class="!p-2.5">
-         <SearchOutline class="w-5 h-5 " />
-       </GradientButton>
-     </form>
-   </div> 
-   
+
    <div class="mx-auto max-w-2xl m-11">
      <div class="space-y-4 relative">
        <Card horizontal size="md">

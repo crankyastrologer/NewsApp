@@ -70,6 +70,15 @@ const schema = yup.object().shape({
     });
 </script>
 <form on:submit|preventDefault={handleSubmit}>
+  <GradientButton outline color="purpleToBlue" class="hover:bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">Purple to Blue</GradientButton>
+<GradientButton outline color="cyanToBlue">Cyan to Blue</GradientButton>
+<GradientButton outline color="greenToBlue">Green to Blue</GradientButton>
+<GradientButton outline color="purpleToPink">Purple to Pink</GradientButton>
+<GradientButton outline color="pinkToOrange">Pink to Orange</GradientButton>
+<GradientButton outline color="tealToLime">Teal to Lime</GradientButton>
+<GradientButton outline pill color="redToYellow">Red to Yellow</GradientButton>
+<GradientButton outline color="redToYellow" class="w-72">Red to Yellow</GradientButton>
+
 <div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
   <div class="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800">
     <Heading tag="h2" class="text-center mb-4">
@@ -96,8 +105,18 @@ const schema = yup.object().shape({
       {/if}
     </div>
     
-    <GradientButton outline color="purpleToBlue" class="mt-4 w-full" type='submit'>Submit</GradientButton>
+    <GradientButton  color="purpleToBlue" class="mt-4 w-full" type='submit'>Submit</GradientButton>
     <div class='dark:text-white'>or  <a href='/register'>register</a></div>
   </div>
 </div>
 </form>
+
+
+<GradientButton outline color="purpleToBlue">Purple to Blue</GradientButton>
+<GradientButton outline color="cyanToBlue">Cyan to Blue</GradientButton>
+<GradientButton outline color="greenToBlue">Green to Blue</GradientButton>
+<GradientButton outline color="purpleToPink">Purple to Pink</GradientButton>
+<GradientButton outline color="pinkToOrange">Pink to Orange</GradientButton>
+<GradientButton outline color="tealToLime">Teal to Lime</GradientButton>
+<GradientButton outline pill color="redToYellow">Red to Yellow</GradientButton>
+<GradientButton outline color="redToYellow" class="w-72">Red to Yellow</GradientButton>
